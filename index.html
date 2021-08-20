@@ -12,6 +12,16 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.container{
+				display: flex;
+			}
+			.col{
+				flex: 1;
+				flex-basis: 50vw;
+				padding: 0 1rem;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -59,20 +69,18 @@
 				<section>
 					<h3>Commands</h3>
 					<dl>
-						<dt class="fragment fade-in"><pre><code data-trim data-noescape>git status </code></pre></dt><dd class="fragment fade-in">shows which files are tracked, modified,and staged</dd>
-						<dt class="fragment fade-in"><pre><code data-trim data-noescape>git add &lang;filename or directory&rang;</code></pre></dt><dd class="fragment fade-in">adds a file or directory to the staging area</dd>
-						<dt class="fragment fade-in"><pre><code data-trim data-noescape>git add -p</code></pre></dt><dd class="fragment fade-in">interactively add changes to the staging area one-by-one</dd>
-						<dt class="fragment fade-in"><pre><code data-trim data-noescape>git add -a</code></pre></dt><dd class="fragment fade-in">add *all* changed files to the staging area</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git status </code></pre></dt><dd class="fragment fade-in">shows which files are tracked, modified,and staged</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git add &lang;filename or directory&rang;</code></pre></dt><dd class="fragment fade-in">adds a file or directory to the staging area</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git add -p</code></pre></dt><dd class="fragment fade-in">interactively add changes to the staging area one-by-one</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git add -a</code></pre></dt><dd class="fragment fade-in">add *all* changed files to the staging area</dd>
 						</dl>
 				</section>
 				<section>
 					<dl>
-						<dt class="fragment fade-in"><pre><code data-trim data-noescape>git reset</code></pre></dt><dd class="fragment fade-in">resets the staging area (but does <em>not</em> change the files on disk)</dd>
-						<dt class="fragment fade-in"><pre><code data-trim data-noescape>git reset --hard</code></pre></dt><dd class="fragment fade-in">resets the staging area and reverts all tracked files to match the current commit</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git diff</code></pre></dt><dd class="fragment fade-in">shows you the changes which are currently in your staging area</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git reset</code></pre></dt><dd class="fragment fade-in">resets the staging area (but does <em>not</em> change the files on disk)</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git reset --hard</code></pre></dt><dd class="fragment fade-in">resets the staging area and reverts all tracked files to match the current commit</dd>
 					</dl>
-				</section>
-				<section>
-					<h3>Your turn!</h3>
 				</section>
 				<section>
 					<h3>Key concepts: Commit</h3>
@@ -88,10 +96,30 @@
 				<section>
 					<h3>Commands</h3>
 					<dl>
-						<dt class="fragment fade-in"><pre><code data-trim data-noescape>git commit -m "&lang;commit message&rang;" </code></pre></dt><dd class="fragment fade-in">creates a new commit from the changes which are currently staged, with the associated commit message</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git diff --check</code></pre></dt><dd class="fragment fade-in">check if your changes introduce whitespace errors before you make a commit</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git commit</code></pre></dt><dd class="fragment fade-in">creates a new commit and open up your default editor to edit the commit message. (n.b. <code>git config --global core.editor "nano"</code> to set the default editor to nano.</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git commit -m "&lang;commit message&rang;" </code></pre></dt><dd class="fragment fade-in">creates a new commit from the changes which are currently staged, with a shorter (one-line) commit message</dd>
+					</dl>
+						</section>
+				<section>
+					<dl>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git show</code></pre></dt><dd class="fragment fade-in">displays the commit message and file changes associated with the current commit</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git log</code></pre></dt><dd class="fragment fade-in">shows the commit history</dd>
 					</dl>
 				</section>
 				<section>
+					<h3>Sidebar: Commit messages</h3>
+						<img class="col" src="img/Commit-History.png">
+					<aside class="notes">
+						Commit messages are (sometimes the only) notes to future developers about what a code change does.
+						What information do you get from these commit messages?
+					</aside>
+				</section>
+				<section>
+					<img src="img/Commit-Message-Example.png">
+					<p>Source: <a href="https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project">Pro Git, section 5.2</a>></p>
+				</section>
+					<section>
 					<h3>Key concepts: Branch</h3>
 					<img src="img/Git-Branching.png" class="r-stretch">
 					<aside class="notes">
@@ -102,7 +130,47 @@
 						Even if you delete a branch, the individual commits are still in gits database, accessible by their hash numbers
 					</aside>
 				</section>
-
+				<section>
+					<h3>Commands</h3>
+					<dl>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git checkout &lang;branch-name&rang; </code></pre></dt><dd class="fragment fade-in">switches to a different branch</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git checkout -b &lang;branch-name&rang; </code></pre></dt><dd class="fragment fade-in">creates a new branch, <em>rooted in your current commit</em></dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git branch</code></pre></dt><dd class="fragment fade-in">list branches you have locally, with a * next to the branch you're currently on</dd>
+					</dl>
+				</section>
+				<section>
+					Remote commands (fetch, push/pull)
+				</section>
+				<section>
+					<h3>Your turn!</h3>
+					<ol>
+						<li>Clone the <a href="https://github.com/timstallmann/git-training-sample">git-training-sample repository</a></li>
+						<li>Create a new branch, named with your name</li>
+						<li>Add two commits to the branch:
+							<ul>
+								<li>In one commit, edit the <em>notes.txt</em> file and add one thing you've learned so far after the colon witn your name</li>
+								<li>In a second commit, add a cute animal photo to the photos directory</li>
+								</ul>
+						</li>
+						<li>Run <em>git log</em> and paste a screenshot of the output to the slack channel</li>
+					</ol>
+				</section>
+				<section>
+					<h3>Questions/reflections?</h3>
+				</section>
+				<section>
+					How we (try) to do things with git at DataWorks
+				</section>
+				<section>
+					A step-by-step for making clean branches
+				</section>
+				<section>
+					<h3>Advanced git commands</h3>
+					<dl>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git rebase &lang;branch-name&rang;</code></pre></dt><dd class="fragment fade-in">move the root of your current branch to the tip of branch-name. E.g. <em>git rebase main</em></dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git mergetool</code></pre></dt><dd class="fragment fade-in">interactively resolve merge commits that might come up during a rebase</em></dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git cherry-pick &lang;commit-hash&rang;</code></pre></dt><dd class="fragment fade-in">grab a commit (from any branch!) and add it to the tip of your current branch</dd>
+				</section>
 		</section>
 			</div>
 		</div>
