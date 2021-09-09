@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Git Training</title>
+		<title>Git Training, Part 1</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -40,7 +40,7 @@
 	<ul>
 	<li>Git stores snapshots (commits) of your files
 	<li>You can use these to move backward and forward in time (like a more powerful undo/redo)
-	<li>But you can **also** work on different branches at the same time
+		<li>But you can <b>also</b> work on different branches at the same time
 	</ul>
 </section>
 <section>
@@ -53,7 +53,6 @@
 </section>
 <section>
 	<h3>So what is github?</h3>
-	--github image--
 	<p>Github is a git server & a web-based interface to browse and manage git repositories.
 	<ul>
 		<li>You can store a git repo on github (or not!)
@@ -79,7 +78,7 @@
 					<dl>
 						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git diff</code></pre></dt><dd class="fragment fade-in">shows you the changes which are currently in your staging area</dd>
 						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git reset</code></pre></dt><dd class="fragment fade-in">resets the staging area (but does <em>not</em> change the files on disk)</dd>
-						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git reset --hard</code></pre></dt><dd class="fragment fade-in">resets the staging area and reverts all tracked files to match the current commit</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git reset --hard</code></pre></dt><dd class="fragment fade-in">resets the staging area <em>and</em> changes the files on disk</dd>
 					</dl>
 				</section>
 				<section>
@@ -97,12 +96,12 @@
 					<h3>Commands</h3>
 					<dl>
 						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git diff --check</code></pre></dt><dd class="fragment fade-in">check if your changes introduce whitespace errors before you make a commit</dd>
-						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git commit</code></pre></dt><dd class="fragment fade-in">creates a new commit and open up your default editor to edit the commit message. (n.b. <code>git config --global core.editor "nano"</code> to set the default editor to nano.</dd>
-						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git commit -m "&lang;commit message&rang;" </code></pre></dt><dd class="fragment fade-in">creates a new commit from the changes which are currently staged, with a shorter (one-line) commit message</dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git commit</code></pre></dt><dd class="fragment fade-in">creates a new commit and open up your default editor to edit the commit message. (n.b. <code>git config --global core.editor "nano"</code> to set the default editor to nano).</dd>
 					</dl>
 						</section>
 				<section>
 					<dl>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git commit -m "&lang;commit message&rang;" </code></pre></dt><dd class="fragment fade-in">creates a new commit from the changes which are currently staged, with a shorter (one-line) commit message</dd>
 						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git show</code></pre></dt><dd class="fragment fade-in">displays the commit message and file changes associated with the current commit</dd>
 						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git log</code></pre></dt><dd class="fragment fade-in">shows the commit history</dd>
 					</dl>
@@ -139,9 +138,6 @@
 					</dl>
 				</section>
 				<section>
-					Remote commands (fetch, push/pull)
-				</section>
-				<section>
 					<h3>Your turn!</h3>
 					<ol>
 						<li>Clone the <a href="https://github.com/timstallmann/git-training-sample">git-training-sample repository</a></li>
@@ -157,19 +153,6 @@
 				</section>
 				<section>
 					<h3>Questions/reflections?</h3>
-				</section>
-				<section>
-					How we (try) to do things with git at DataWorks
-				</section>
-				<section>
-					A step-by-step for making clean branches
-				</section>
-				<section>
-					<h3>Advanced git commands</h3>
-					<dl>
-						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git rebase &lang;branch-name&rang;</code></pre></dt><dd class="fragment fade-in">move the root of your current branch to the tip of branch-name. E.g. <em>git rebase main</em></dd>
-						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git mergetool</code></pre></dt><dd class="fragment fade-in">interactively resolve merge commits that might come up during a rebase</em></dd>
-						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git cherry-pick &lang;commit-hash&rang;</code></pre></dt><dd class="fragment fade-in">grab a commit (from any branch!) and add it to the tip of your current branch</dd>
 				</section>
 		</section>
 			</div>

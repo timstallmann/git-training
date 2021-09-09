@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Git Training, Part 2</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/night.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.container{
+				display: flex;
+			}
+			.col{
+				flex: 1;
+				flex-basis: 50vw;
+				padding: 0 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+<section>
+	<h1>Git training, Part 2</h1>
+	For DataWorks, 2021
+</section>
+				<section>
+					Remote commands (fetch, push/pull)
+				</section>
+				<section>
+					How we (try) to do things with git at DataWorks
+				</section>
+				<section>
+					A step-by-step for making clean branches
+				</section>
+				<section>
+					<h3>Advanced git commands</h3>
+					<dl>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git rebase &lang;branch-name&rang;</code></pre></dt><dd class="fragment fade-in">move the root of your current branch to the tip of branch-name. E.g. <em>git rebase main</em></dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git mergetool</code></pre></dt><dd class="fragment fade-in">interactively resolve merge commits that might come up during a rebase</em></dd>
+						<dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git cherry-pick &lang;commit-hash&rang;</code></pre></dt><dd class="fragment fade-in">grab a commit (from any branch!) and add it to the tip of your current branch</dd>
+				</section>
+		</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
