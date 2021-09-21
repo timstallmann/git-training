@@ -271,7 +271,7 @@ gulp.task('build', gulp.parallel('js', 'css', 'plugins'))
 gulp.task('package', gulp.series('default', () =>
 
     gulp.src([
-        './part_1.html',
+        './index.html',
         './dist/**',
         './lib/**',
         './images/**',

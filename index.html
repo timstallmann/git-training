@@ -1,0 +1,335 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Git Training, Part 1</title>
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/night.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+  <style>
+      .container {
+          display: flex;
+      }
+
+      .col {
+          flex: 1;
+          flex-basis: 50vw;
+          padding: 0 1rem;
+      }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+    <section>
+      <h1>Git training</h1>
+      For DataWorks, 2021
+    </section>
+    <section>
+      <h2>What is git?</h2>
+      <blockquote>Git is a free and open source distributed version control system designed to handle everything from
+        small to very large projects with speed and efficiency.
+      </blockquote>
+      <cite>https://git-scm.com/</cite>
+    </section>
+    <section>
+      <h3>Version control system</h3>
+      <ul>
+        <li>Git stores snapshots (commits) of your files
+        <li>You can use these to move backward and forward in time (like a more powerful undo/redo)
+        <li>But you can <b>also</b> work on different branches at the same time
+      </ul>
+    </section>
+    <section>
+      <h3>Distributed</h3>
+      <ul>
+        <li>Nearly everything happens on your local machine.</li>
+        <li>Everyone using a git repository has their own copy of the history of that repository.</li>
+        <li>There's no central server</li>
+      </ul>
+    </section>
+    <section>
+      <h3>So what is github?</h3>
+      <p>Github is a git server & a web-based interface to browse and manage git repositories.
+      <ul>
+        <li>You can store a git repo on github (or not!)
+        <li>You can use github's interface to merge branches, view pull requests, and even edit files
+        <li>Bitbucket and Gitlab are two other similar tools</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Key concepts: Staging area</h3>
+      <img src="img/staging-vs-commit.png">
+      <p>Source: Pro Git, section 1.3</p>
+    </section>
+    <section>
+      <h3>Commands</h3>
+      <dl>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git status </code></pre>
+        </dt>
+        <dd class="fragment fade-in">shows which files are tracked, modified,and staged</dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim
+                     data-noescape>git add &lang;filename or directory&rang;</code></pre>
+        </dt>
+        <dd class="fragment fade-in">adds a file or directory to the staging area</dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git add -p</code></pre>
+        </dt>
+        <dd class="fragment fade-in">interactively add changes to the staging area one-by-one</dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git add -a</code></pre>
+        </dt>
+        <dd class="fragment fade-in">add *all* changed files to the staging area</dd>
+      </dl>
+    </section>
+    <section>
+      <dl>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git diff</code></pre>
+        </dt>
+        <dd class="fragment fade-in">shows you the current differences between your files on disk and the most recent
+          commit (for staged files only)
+        </dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git reset</code></pre>
+        </dt>
+        <dd class="fragment fade-in">resets the staging area (but does <em>not</em> change the files on disk)</dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git reset --hard</code></pre>
+        </dt>
+        <dd class="fragment fade-in">resets the staging area <em>and</em> changes the files on disk</dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Key concepts: Commit</h3>
+      <img src="img/Commit-Example.png" class="r-stretch">
+      <aside class="notes">
+        Question -- what information do you see in this snapshot?
+
+        A commit is a snapshot at a particular point in time of the state of the codebase.
+        Each commit is identified only by a unique number (a cryptographic hash) that is computed using the state of the
+        repository, along with a pointer to the previous commit.
+        One of the things that make git so powerful is that it stores only those files which have changed since the
+        previous commit.
+      </aside>
+    </section>
+    <section>
+      <h3>Commands</h3>
+      <dl>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git commit</code></pre>
+        </dt>
+        <dd class="fragment fade-in">creates a new commit and open up your default editor to edit the commit message.
+          (n.b. <code>git config --global core.editor "nano"</code> to set the default editor to nano).
+        </dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim
+                     data-noescape>git commit -m "&lang;commit message&rang;" </code></pre>
+        </dt>
+        <dd class="fragment fade-in">creates a new commit from the changes which are currently staged, with a shorter
+          (one-line) commit message
+        </dd>
+      </dl>
+    </section>
+    <section>
+      <dl>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git diff --check</code></pre>
+        </dt>
+        <dd class="fragment fade-in">check if your changes introduce whitespace errors before you make a commit</dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git show</code></pre>
+        </dt>
+        <dd class="fragment fade-in">displays the commit message and file changes associated with the current commit
+        </dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git log</code></pre>
+        </dt>
+        <dd class="fragment fade-in">shows the commit history</dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Sidebar: Commit messages</h3>
+      <img class="col" src="img/Commit-History.png">
+      <aside class="notes">
+        Commit messages are (sometimes the only) notes to future developers about what a code change does.
+        What information do you get from these commit messages?
+      </aside>
+    </section>
+    <section>
+      <img src="img/Commit-Message-Example.png">
+      <p>Source: <a href="https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project">Pro Git, section
+        5.2</a></p>
+    </section>
+    <section>
+      <h3>Key concepts: Branch</h3>
+      <img src="img/Git-Branching.png" class="r-stretch">
+      <aside class="notes">
+        A branch is just a pointer to a particular commit. The branch pointer gets updated each time a new commit is
+        made to point to the
+        newest commit on that branch.
+        Most repositories have a special default branch called master or main.
+        A merge commit combines the commits in two branches (usually master/main and a feature branch
+        We usually create merge commits as a result of a pull request
+        Even if you delete a branch, the individual commits are still in gits database, accessible by their hash numbers
+      </aside>
+    </section>
+    <section>
+      <h3>Commands</h3>
+      <dl>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git checkout &lang;branch-name&rang; </code></pre>
+        </dt>
+        <dd class="fragment fade-in">switches to a different branch</dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git checkout -b &lang;branch-name&rang; </code></pre>
+        </dt>
+        <dd class="fragment fade-in">creates a new branch, <em>rooted in your current commit</em></dd>
+        <dt class="fragment fade-in">
+          <pre><code class="language-bash" data-trim data-noescape>git branch</code></pre>
+        </dt>
+        <dd class="fragment fade-in">list branches you have locally, with a * next to the branch you're currently on
+        </dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Your turn!</h3>
+      <ol>
+        <li>Clone the <a href="https://github.com/timstallmann/git-training-sample">git-training-sample repository</a>
+        </li>
+        <li>Create a new branch, named with your name</li>
+        <li>Add two commits to the branch:
+          <ul>
+            <li>In one commit, edit the <em>notes.txt</em> file and add one thing you've learned so far after the colon
+              witn your name
+            </li>
+            <li>In a second commit, add a cute animal photo to the photos directory</li>
+          </ul>
+        </li>
+        <li>Run <em>git log</em> and paste a screenshot of the output to the slack channel</li>
+      </ol>
+    </section>
+    <section>
+      <h3>Questions/reflections?</h3>
+    </section>
+    <section>
+      <h3>Merging</h3>
+      <img src="img/merge-scenario-examples.png" class="r-stretch">
+      <p>Once you've done work on a branch, how does it get integrated back into the repository?</p>
+      <aside class="notes">
+        So suppose you've done some work on a branch (like you did last time). How do you get that work integrated back into the main branch?
+
+        There are two scenarios to consider here.
+
+        Q: Looking at the two images above, what differences do you see between these two scenarios?
+          (1) the branch that contains your work is "rooted" in the "tip" of the repository -- e.g. it contains all the previous work that's been done + some new commits.
+          (2) the branch that contains your work is "rooted" somewhere further back in the tree.
+      </aside>
+    </section>
+    <section>
+      <h3>Merging via fast-forward</h3>
+      <img src="img/ff-merge-example.png" class="r-stretch">
+    </section>
+
+    <section>
+      <h3>Merging via a merge-commit</h3>
+      <img src="img/merge-commit-example.png" class="r-stretch">
+      <h4 class="fragment fade-in">Question: Any ideas how this process could could go wrong?</h4>
+    </section>
+    <section>
+      <h3>Merge conflicts</h3>
+      <p class="r-fit-text">Merge conflicts happen when the same part of a file has changed both in the main branch (the branch you're merging into) <em>and</em> in the feature branch you're merging.</p>
+      <p class="r-fit-text fragment fade-in">Merge conflicts will happen occasionally. But you shouldn't, generally speaking, run into them very often. <b>When they do happen, they're often a sign that something is wrong</b>. It's a good time to ask for help!</p>
+      <aside class="notes">
+        Go to screenshare here -- show process of merging with git merge commit. Let's see an example. On the main branch, I've made a commit to revise the old notes. But I've also done the same in the feature branch revise-old-notes.
+
+        How to resolve?
+
+        Git merge-tool.
+
+      In a minute, we'll talk about a workflow that should mostly avoid merge conflicts.
+      </aside>
+    </section>
+    <section>
+      Remote commands (fetch, push/pull)
+      <dl>
+      <dt>
+        <pre><code class="language-bash" data-trim data-noescape>git push origin &lang;branch-name&rang;</code></pre>
+      </dt><dd>Upload all the most recent commits from your branch locally to the corresponding branch on the remote repository. Note that if there are newer commits on the remote repository, this may throw an error.</dd>
+        </dl>
+    </section>
+    <section>
+      <dl>
+        <dt>
+          <pre><code class="language-bash" data-trim data-noescape>git pull origin</code></pre>
+        </dt><dd>Download all the commits which are on the remote repository on the corresponding branch, and <em>merge</em> them into your local copy of that branch. Note that this should only ever be a fast-forward merge. If you start getting merge commits from a pull, something is likely wrong with the set-up of your repository.</dd>
+      </dl>
+    </section>
+    <section>
+      <dl>
+        <dt>
+          <pre><code class="language-bash" data-trim data-noescape>git fetch origin</code></pre>
+        </dt><dd>Downloads the names of branches/tags from the remote repository, so you can check them out locally.</dd>
+      </dl>
+      <aside class="notes"></aside>
+    </section>
+    <section>
+      <h3>How we (try) to do things with git at DataWorks</h3>
+      <ul class="r-fit-text">
+        <li class="fragment fade-in">The <b>main</b> branch on a repository only ever contains code/data that is completely working, reviewed and ready to release into the world. Generally, that release happens automatically!</li>
+        <li class="fragment fade-in"><b>develop</b> branch contains work that is reviewed and completely working, but may need testing in staging environment before final release. Not all repositories have a develop branch.</li>
+        <li class="fragment fade-in">New work only ever happens in named feature branches. One branch for each specific task</li>
+      </ul>
+      <p class="fragment fade-in">Note: This is referred to as the "feature branch" workflow, and it's not the only one folks use. See, e.g. <a href="https://zepel.io/blog/5-git-workflows-to-improve-development/">this blog post</a> for more examples.</p>
+    </section>
+    <section>
+      <h3>A step-by-step for making clean branches</h3>
+      <ol class="r-fit-text">
+        <li class="fragment fade-in">Never make commits to the <b>main</b> or <b>develop</b> branches -- those branches should only change via pull requests in github</li>
+        <li class="fragment fade-in">Always checkout the develop (or main, for the data repo) branch locally, make sure that your working directory is "clean" by running git reset --hard, and pull the latest commits from the remote repository</li>
+        <li class="fragment fade-in">Before you start work on a new task, think about what you're going to work on!</li>
+        <li class="fragment fade-in">Then, make a new branch for the task you're working on, and only include file changes that are relevant to the task at hand in commits to that branch (e.g. by using git add -p to only add files that need to be changed.</li>
+        <li class="fragment fade-in">If you need to switch tasks on the same repo, first commit your work, then change branches</li>
+        <li class="fragment fade-in">When you're done working on the branch, push it to the remote repo and open a pull request.</li>
+        <li class="fragment fade-in">If you're working on a branch with multiple people, be sure to pull in their new work to your local branch each time before you start working, and push up your work each time you're done.</li>
+        <li class="fragment fade-in">Optional, but helpful -- before you submit a pull request for a branch you've worked on, first checkout the main branch again, pull in all recent work, and <em>rebase</em> your branch on top of that work. This will also surface any potential merge conflicts and allow you to fix them.</li>
+      </ol>
+    </section>
+    <section>
+      <h3>Advanced git commands</h3>
+      <dl>
+        <dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git rebase &lang;branch-name&rang;</code></pre></dt><dd class="fragment fade-in">move the root of your current branch to the tip of branch-name. E.g. <em>git rebase main</em>. With -i, allows you to edit commit history too.</dd>
+        <dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git mergetool</code></pre></dt><dd class="fragment fade-in">interactively resolve merge commits that might come up during a rebase</em></dd>
+        <dt class="fragment fade-in"><pre><code class="language-bash" data-trim data-noescape>git cherry-pick &lang;commit-hash&rang;</code></pre></dt><dd class="fragment fade-in">grab a commit (from any branch!) and add it to the tip of your current branch</dd>
+      </dl>
+    </section>
+  </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+  // More info about initialization & config:
+  // - https://revealjs.com/initialization/
+  // - https://revealjs.com/config/
+  Reveal.initialize({
+    hash: true,
+
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+  });
+
+  Reveal.configure({ pdfSeparateFragments: false });
+</script>
+</body>
+</html>
